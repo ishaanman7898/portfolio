@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ishaan Manoor | Investing &amp; Technology</title>
+<title>Home | Ishaan Manoor</title>
 <meta name="description" content="A personal portfolio exploring the intersection of financial thinking and data science.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#ffffff">
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=8">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body id="top">
@@ -25,6 +25,7 @@
   <nav>
     <a href="#experience">Experience</a>
     <a href="#work">Work</a>
+    <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
@@ -143,22 +144,24 @@
 </section>
 
 <section id="work" class="wrap section">
-  <h2 class="reveal">Selected work</h2>
-  <div class="cards">
-    <article class="card reveal">
+  <h2 class="reveal">Open source work</h2>
+  <div class="rotator reveal" id="rotator">
+    <article class="card">
       <svg class="icon" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M2 2v22h22M6 17l5-6 4 4 7-8" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-      <p class="label">01 / Investment research</p>
-      <h3>Equity valuation study</h3>
-      <p class="body">A sample investment thesis combining fundamental research, a DCF model, and scenario analysis.</p>
-      <p class="label">Excel · Valuation · Research</p>
+      <p class="label" data-count></p>
+      <h3 data-name></h3>
+      <p class="body" data-desc></p>
+      <p class="label" data-meta></p>
+      <a class="repo" data-link target="_blank" rel="noopener">View on GitHub
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 3l8 8M11 4.5V11H4.5" stroke="currentColor" stroke-width="1.6"/></svg>
+      </a>
     </article>
-    <article class="card reveal">
-      <svg class="icon" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M2 2v22h22M6 17l5-6 4 4 7-8" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-      <p class="label">02 / Applied data science</p>
-      <h3>Credit risk modeling</h3>
-      <p class="body">A sample classification project exploring borrower risk, feature engineering, and interpretable machine learning.</p>
-      <p class="label">Python · Pandas · Scikit-learn</p>
-    </article>
+    <div class="rot-ctrl">
+      <button type="button" data-prev aria-label="Previous project">←</button>
+      <div class="dots" data-dots></div>
+      <button type="button" data-next aria-label="Next project">→</button>
+    </div>
+    <noscript><a class="repo" href="https://github.com/MeridianAlgo">Open source work on GitHub</a></noscript>
   </div>
   <div class="slot graphic reveal">
     <p class="label">Research / Project graphic</p>
@@ -166,7 +169,7 @@
   </div>
 </section>
 
-<section class="wrap section split">
+<section id="about" class="wrap section split">
   <div class="reveal">
     <h3>Gies College of Business</h3>
     <p class="body">University of Illinois Urbana Champaign · B.S., Undeclared · Expected May 2030</p>
@@ -201,6 +204,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=6"></script>
+<script src="script.js?v=7"></script>
 </body>
 </html>

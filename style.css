@@ -59,6 +59,19 @@ a.org:hover{color:var(--green)}
 .card .body+.label{margin-top:14px}
 .graphic{height:260px;margin-top:28px}
 
+.rotator{max-width:640px}
+.rotator .card{min-height:300px;display:flex;flex-direction:column;transition:opacity .25s ease}
+.rotator .card.swap{opacity:0}
+.rotator .card h3{font-size:24px}
+.rotator .card .repo{margin-top:auto;padding-top:20px;display:inline-flex;align-items:center;gap:8px;font:500 14px var(--sans);letter-spacing:0;color:var(--green)}
+.rotator .card .repo:hover{text-decoration:underline}
+.rot-ctrl{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px}
+.rot-ctrl>button{width:40px;height:40px;border:1px solid var(--green);border-radius:4px;background:var(--panel);color:var(--green);font-size:16px;cursor:pointer;transition:background .2s}
+.rot-ctrl>button:hover{background:#dde7d7}
+.dots{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.dots button{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:var(--hair);cursor:pointer}
+.dots button.on{background:var(--green)}
+
 /* education and skills */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:64px;padding-bottom:56px}
 .split h3{margin-bottom:20px}
