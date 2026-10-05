@@ -4,11 +4,11 @@ Personal portfolio for Ishaan Manoor. It is a single static page with no build s
 
 ## Files
 
-`index.html` holds all the content. `style.css` handles the black and white theme and the two column layout, which stacks into one column on small screens. `script.js` highlights the sidebar link for the section in view.
+`index.html` holds all the content. `style.css` handles the dark monochrome theme, the dashboard mockup in the hero, and the card layouts, which collapse to one column on phones. `script.js` highlights the nav pill for the section in view and powers the copy buttons on the install commands.
 
 ## Editing
 
-Experience and projects are `<li class="item">` blocks. Copy one and change the text to add a new entry. Add an `<a class="cover">` inside an item to make the whole card a link.
+Jobs are `<article class="job">` blocks and projects are `<a class="card">` blocks. Copy one and change the text to add a new entry. After changing `style.css` or `script.js`, bump the `?v=` number on their tags in `index.html` so browsers fetch the new file instead of a cached one.
 
 ## Running locally
 
