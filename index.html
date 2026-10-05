@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#ffffff">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body id="top">
@@ -153,7 +153,7 @@
       <p class="body" data-desc></p>
       <p class="label" data-meta></p>
       <a class="repo" data-link target="_blank" rel="noopener">View on GitHub
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 3l8 8M11 4.5V11H4.5" stroke="currentColor" stroke-width="1.6"/></svg>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1.5 7h10.5M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6"/></svg>
       </a>
     </article>
     <div class="rot-ctrl">
@@ -169,21 +169,40 @@
   </div>
 </section>
 
-<section id="about" class="wrap section split">
-  <div class="reveal">
-    <h3>Gies College of Business</h3>
-    <p class="body">University of Illinois Urbana Champaign · B.S., Undeclared · Expected May 2030</p>
-    <p class="body">Waubonsie Valley High School · Class of 2026 · Weighted GPA 4.3/4.0</p>
+<section id="about" class="wrap section">
+  <h2 class="reveal">Education</h2>
+  <div class="edu">
+    <article class="edu-card reveal">
+      <p class="label accent">Gies College of Business</p>
+      <h3>University of Illinois Urbana-Champaign</h3>
+      <dl class="facts">
+        <div><dt class="label">Degree</dt><dd>B.S., Undeclared</dd></div>
+        <div><dt class="label">Expected</dt><dd>May 2030</dd></div>
+      </dl>
+    </article>
+    <article class="edu-card reveal">
+      <p class="label accent">High school</p>
+      <h3>Waubonsie Valley High School</h3>
+      <dl class="facts">
+        <div><dt class="label">Class of</dt><dd>2026</dd></div>
+        <div><dt class="label">Weighted GPA</dt><dd>4.3 / 4.0</dd></div>
+      </dl>
+    </article>
   </div>
-  <div class="skills reveal">
-    <h3>Skills &amp; interests</h3>
-    <div class="rule">
+
+  <h2 class="reveal skills-head">Skills &amp; interests</h2>
+  <div class="skill-grid">
+    <div class="skill-group reveal">
       <p class="label">Code &amp; tools</p>
-      <p class="body">Python · JavaScript · HTML/CSS · Git</p>
+      <ul class="chips"><li>Python</li><li>JavaScript</li><li>HTML/CSS</li><li>Git</li></ul>
     </div>
-    <div class="rule">
-      <p class="body">Portfolio optimization · Financial modeling · Market research · Agentic AI</p>
-      <p class="body">English &amp; Kannada (native) · French (working)</p>
+    <div class="skill-group reveal">
+      <p class="label">Focus areas</p>
+      <ul class="chips"><li>Portfolio optimization</li><li>Financial modeling</li><li>Market research</li><li>Agentic AI</li></ul>
+    </div>
+    <div class="skill-group reveal">
+      <p class="label">Languages</p>
+      <ul class="chips"><li>English (native)</li><li>Kannada (native)</li><li>French (working)</li></ul>
     </div>
   </div>
 </section>

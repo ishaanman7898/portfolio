@@ -8,7 +8,7 @@ Personal portfolio for Ishaan Manoor. It is a single static page with no build s
 
 ## Editing
 
-Jobs are `<article class="job">` blocks and projects are `<article class="card">` blocks. Copy one and change the text to add a new entry. To add your photo, replace the contents of the `.slot.photo` box with an `<img>`. After changing `style.css` or `script.js`, bump the `?v=` number on their tags in `index.html` so browsers fetch the new file instead of a cached one.
+Jobs are `<article class="job">` blocks. Open source projects live in the `PROJECTS` list in `script.js` and show one at a time in the full width rotator. Education entries are `<article class="edu-card">` blocks, and skills are `<li>` chips inside each `.skill-group`. Copy one and change the text to add a new entry. To add your photo, replace the contents of the `.slot.photo` box with an `<img>`. After changing `style.css` or `script.js`, bump the `?v=` number on their tags in `index.html` so browsers fetch the new file instead of a cached one.
 
 ## Running locally
 
