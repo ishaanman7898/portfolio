@@ -1,17 +1,9 @@
-// Highlight the nav pill for the section in view (education counts as skills).
-const links = document.querySelectorAll('.pill-nav a');
+// Fade sections in as they scroll into view, matching the Framer reveal.
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
-    const id = { '': 'top', education: 'skills' }[e.target.id] ?? e.target.id;
-    links.forEach(a => a.classList.toggle('active', a.hash === '#' + id));
+    e.target.classList.add('in');
+    io.unobserve(e.target);
   });
-}, { rootMargin: '-45% 0px -50% 0px' });
-document.querySelectorAll('.hero, main > section[id]').forEach(s => io.observe(s));
-
-// Copy install commands.
-document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', async () => {
-  try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = 'Copied'; }
-  catch { b.textContent = 'Failed'; }
-  setTimeout(() => (b.textContent = 'Copy'), 1500);
-}));
+}, { rootMargin: '0px 0px -8% 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
