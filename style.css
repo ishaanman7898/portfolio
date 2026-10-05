@@ -45,6 +45,7 @@ header.wrap::before{content:'';position:absolute;left:24px;right:24px;bottom:0;b
 .section>h2{margin-bottom:12px}
 #experience{padding-bottom:0}
 .job{display:grid;grid-template-columns:228px 1fr;padding:32px 0 34px;border-bottom:1px solid var(--green)}
+.job:first-of-type{border-bottom-color:var(--hair)}
 .job:last-child{border-bottom-width:2px}
 .job .label{padding-top:6px}
 .org{display:block;margin:6px 0 6px;transition:color .2s}
