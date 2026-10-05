@@ -1,14 +1,14 @@
 # Portfolio
 
-Personal site for Ishaan Manoor. It is a single static page with no build step and no JavaScript.
+Personal portfolio for Ishaan Manoor. It is a single static page with no build step.
 
 ## Files
 
-`index.html` holds all the content. `style.css` handles layout and switches to a black background when the visitor's system is set to dark mode.
+`index.html` holds all the content. `style.css` handles the black and white theme and the two column layout, which stacks into one column on small screens. `script.js` highlights the sidebar link for the section in view.
 
 ## Editing
 
-Each job, project, or school is a `.row` block with a date column on the left and details on the right. Copy an existing block and change the text to add a new one.
+Experience and projects are `<li class="item">` blocks. Copy one and change the text to add a new entry. Add an `<a class="cover">` inside an item to make the whole card a link.
 
 ## Running locally
 
