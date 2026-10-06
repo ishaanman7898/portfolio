@@ -65,8 +65,8 @@ a.org:hover{color:var(--green)}
 .rotator .card .repo{margin-top:auto;padding-top:20px;display:inline-flex;align-items:center;gap:8px;font:500 14px var(--sans);letter-spacing:0;color:var(--green)}
 .rotator .card .repo:hover{text-decoration:underline}
 .rot-ctrl{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px}
-.rot-ctrl>button{width:40px;height:40px;border:1px solid var(--green);border-radius:4px;background:var(--panel);color:var(--green);font-size:16px;cursor:pointer;transition:background .2s}
-.rot-ctrl>button:hover{background:#dde7d7}
+.rot-ctrl>button{width:40px;height:40px;border:1px solid #1f4d3a;border-radius:4px;background:#1f4d3a;color:#fff;font-size:16px;cursor:pointer;transition:background .2s}
+.rot-ctrl>button:hover{background:#163a2b}
 .dots{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
 .dots button{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:var(--hair);cursor:pointer}
 .dots button.on{background:var(--green)}
