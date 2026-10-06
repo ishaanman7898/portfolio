@@ -11,24 +11,16 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 // Open source projects shown in the rotating showcase.
 const GH = 'https://github.com/MeridianAlgo/';
 const PROJECTS = [
-  ['meridianalgo.org', 'The source code for this website — React, TypeScript, Tailwind.', 'TypeScript'],
-  ['Python-Packages', 'Our PyPI packages. Install with pip install meridianalgo, or read the source.', 'Python · MIT'],
-  ['Javascript-Packages', 'Our NPM packages — a quantitative finance framework for Node and TypeScript.', 'TypeScript · MIT'],
   ['Learn-Quant', 'The utilities behind our programs, commented line by line so beginners can follow them.', 'Python'],
   ['AraAI', 'Stock volatility prediction, market trend forecasting, and portfolio optimization.', 'Python'],
   ['FinAI', 'Our in-house LLM research, aimed at finance-based chat and financial requests.', 'Python'],
-  ['Midnight.AI', 'Multi-objective trading engine with a pretrained model, Alpaca paper trading, and a backtester.', 'Python · MIT'],
-  ['Basic-Sentiment-Analysis', 'FinBERT sentiment classification of financial news: positive, negative, neutral.', 'Python · MIT'],
   ['Cryptvault', 'Cryptocurrency analysis with ML predictions, 50+ pattern recognition, and terminal charting.', 'Python · BSD 3-Clause'],
-  ['Apex-Analysis', 'Beginner-friendly stock analysis and research, built for accessibility.', 'Python · MIT'],
   ['FinDB', 'Multi-source financial data scraper and database, updated automatically every day.', 'Python · MIT'],
   ['No-Ticker-Left-Behind', 'Every ticker for every world stock, refreshed regularly and exported in common formats.', 'Python'],
-  ['Pine-A-Script', 'Transpiler converting TradingView Pine Script (v5/v6) indicators to JavaScript for Node.', 'JavaScript · MIT'],
-  ['Interlink', 'Interoperability protocol bridging blockchain ecosystems with zero-knowledge proofs.', 'Rust · MIT'],
-  ['UniGroth', 'A Rust implementation of the Groth16 zkSNARK — faster, safer, more adaptable.', 'Rust'],
   ['LiteLayer', 'A lightweight, secure storage layer for self-hosted NAS.', 'Python']
 ];
 
+const tr = s => (window.I18N ? I18N.tr(s) : s);
 const rot = document.getElementById('rotator');
 if (rot) {
   const card = rot.querySelector('.card');
@@ -47,9 +39,9 @@ if (rot) {
 
   function render() {
     const [name, desc, meta] = PROJECTS[i];
-    q('[data-count]').textContent = pad(i + 1) + ' / ' + pad(PROJECTS.length) + ' · Open source';
+    q('[data-count]').textContent = pad(i + 1) + ' / ' + pad(PROJECTS.length) + ' · ' + tr('Open source');
     q('[data-name]').textContent = name;
-    q('[data-desc]').textContent = desc;
+    q('[data-desc]').textContent = tr(desc);
     q('[data-meta]').textContent = meta;
     q('[data-link]').href = GH + name;
     [...dots.children].forEach((d, n) => d.classList.toggle('on', n === i));
@@ -69,6 +61,7 @@ if (rot) {
   rot.addEventListener('mouseleave', restart);
   render();
   restart();
+  window.addEventListener('langchange', render);
 }
 
 // Update the tab title to match the section in view.
@@ -86,3 +79,13 @@ function updateTitle() {
 }
 addEventListener('scroll', updateTitle, { passive: true });
 updateTitle();
+
+// Resume dropdown: view or download.
+const rm = document.getElementById('resumeMenu');
+if (rm) {
+  const btn = rm.querySelector('button');
+  const set = on => { rm.classList.toggle('open', on); btn.setAttribute('aria-expanded', on); };
+  btn.addEventListener('click', e => { e.stopPropagation(); set(!rm.classList.contains('open')); });
+  document.addEventListener('click', () => set(false));
+  addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
+}

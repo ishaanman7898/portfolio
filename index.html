@@ -15,10 +15,15 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#ffffff">
-<link rel="stylesheet" href="style.css?v=9">
+<link rel="stylesheet" href="style.css?v=10">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body id="top">
+
+<div class="lang-bar" id="langBar" hidden>
+  <span data-lang-msg></span>
+  <button type="button" data-lang-back>← Back to English</button>
+</div>
 
 <header class="wrap nav">
   <a href="#top" class="brand">Ishaan Manoor</a>
@@ -27,6 +32,13 @@
     <a href="#work">Work</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
+    <div class="resume-menu" id="resumeMenu">
+      <button type="button" class="resume-btn" aria-haspopup="true" aria-expanded="false">Resume</button>
+      <div class="resume-pop" role="menu">
+        <a role="menuitem" href="resume.pdf" target="_blank" rel="noopener">View</a>
+        <a role="menuitem" href="resume.pdf" download="Ishaan-Manoor-Resume.pdf">Download</a>
+      </div>
+    </div>
   </nav>
 </header>
 
@@ -163,9 +175,26 @@
     </div>
     <noscript><a class="repo" href="https://github.com/MeridianAlgo">Open source work on GitHub</a></noscript>
   </div>
-  <div class="slot graphic reveal">
-    <p class="label">Research / Project graphic</p>
-    <p class="body">Add a portfolio chart, project screenshot, team photo, or internship certificate.</p>
+  <h2 class="reveal skills-head">Research &amp; projects</h2>
+  <div class="cards">
+    <article class="card reveal">
+      <svg class="icon" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M4 13h18M13 4l9 9-9 9" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      <p class="label">Rust · MIT</p>
+      <h3>Interlink</h3>
+      <p class="body">Interoperability protocol bridging blockchain ecosystems with zero-knowledge proofs.</p>
+      <a class="repo" href="https://github.com/MeridianAlgo/Interlink" target="_blank" rel="noopener">View on GitHub
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1.5 7h10.5M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6"/></svg>
+      </a>
+    </article>
+    <article class="card reveal">
+      <svg class="icon" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M13 2l9 5v12l-9 5-9-5V7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      <p class="label">Rust</p>
+      <h3>UniGroth</h3>
+      <p class="body">A Rust implementation of the Groth16 zkSNARK — faster, safer, more adaptable.</p>
+      <a class="repo" href="https://github.com/MeridianAlgo/UniGroth" target="_blank" rel="noopener">View on GitHub
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1.5 7h10.5M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6"/></svg>
+      </a>
+    </article>
   </div>
 </section>
 
@@ -185,7 +214,7 @@
       <h3>Waubonsie Valley High School</h3>
       <dl class="facts">
         <div><dt class="label">Class of</dt><dd>2026</dd></div>
-        <div><dt class="label">Weighted GPA</dt><dd>4.3 / 4.0</dd></div>
+        <div><dt class="label">Degree</dt><dd>High School Diploma</dd></div>
       </dl>
     </article>
   </div>
@@ -202,7 +231,8 @@
     </div>
     <div class="skill-group reveal">
       <p class="label">Languages</p>
-      <ul class="chips"><li>English (native)</li><li>Kannada (native)</li><li>French (working)</li></ul>
+      <p class="hint">Tap a language to view this site in it.</p>
+      <ul class="chips"><li><button type="button" data-lang="en">English (native)</button></li><li><button type="button" data-lang="kn">Kannada (native)</button></li><li><button type="button" data-lang="fr">French (working)</button></li></ul>
     </div>
   </div>
 </section>
@@ -217,12 +247,14 @@
     <nav class="links">
       <a class="label" href="https://www.linkedin.com/in/ishaan-manoor" target="_blank" rel="noopener">LinkedIn</a>
       <a class="label" href="https://github.com/ishaanman7898" target="_blank" rel="noopener">GitHub</a>
+      <a class="label" href="https://app.joinhandshake.com/profiles/ishaan-manoor" target="_blank" rel="noopener">Handshake</a>
       <a class="label" href="#top">Back to top</a>
     </nav>
     <p class="label copy">© 2026 Ishaan Manoor · Made with curiosity ✨</p>
   </div>
 </footer>
 
-<script src="script.js?v=7"></script>
+<script src="i18n.js?v=1"></script>
+<script src="script.js?v=8"></script>
 </body>
 </html>

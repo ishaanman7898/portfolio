@@ -115,3 +115,22 @@ a.org:hover{color:var(--green)}
   .skill-grid{gap:28px}
   .links{gap:20px}
 }
+
+/* Resume dropdown */
+.resume-menu{position:relative}
+.resume-btn{font:500 13px var(--sans);letter-spacing:0;color:var(--green);background:var(--panel);border:1px solid var(--green);border-radius:4px;padding:2px 12px;cursor:pointer;transition:background .2s}
+.resume-btn:hover{background:#dde7d7}
+.resume-pop{display:none;position:absolute;right:0;top:calc(100% + 6px);min-width:130px;background:var(--bg);border:1px solid var(--green);border-radius:4px;padding:4px;z-index:20;box-shadow:0 6px 18px rgba(24,45,37,.12)}
+.resume-menu.open .resume-pop{display:block}
+.resume-pop a{display:block;padding:8px 12px;border-radius:3px;font-size:13px}
+.resume-pop a:hover{background:var(--panel);color:var(--green)}
+
+/* Language switcher */
+.chips li button{font:inherit;letter-spacing:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.chips li:has(button[data-lang]){padding:0}
+.chips li button[data-lang]{padding:6px 14px;border-radius:999px}
+.chips li button[data-lang].on{background:var(--green);color:#fff}
+.hint{font-size:12px;color:var(--mute);margin-top:6px}
+.lang-bar{position:sticky;top:0;z-index:50;display:flex;justify-content:center;align-items:center;gap:16px;padding:8px 16px;background:var(--green);color:#fff;font-size:13px;letter-spacing:0}
+.lang-bar[hidden]{display:none}
+.lang-bar button{font:500 13px var(--sans);color:var(--green);background:#fff;border:0;border-radius:4px;padding:4px 12px;cursor:pointer}
