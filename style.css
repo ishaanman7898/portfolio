@@ -146,3 +146,8 @@ a.org:hover{color:var(--green)}
 .skiptranslate iframe.goog-te-banner-frame,.goog-te-banner-frame,#goog-gt-tt,.goog-te-balloon-frame{display:none!important}
 body{top:0!important}
 .goog-text-highlight{background:none!important;box-shadow:none!important}
+/* Newer Google Translate banner/popups */
+body>.skiptranslate,iframe.skiptranslate,.VIpgJd-ZVi9od-ORHb-OEVmcd,.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,.VIpgJd-ZVi9od-l4eHX-hSRGPd,#goog-gt-tt{display:none!important;visibility:hidden!important}
+html,html.translated-ltr,html.translated-rtl{margin-top:0!important;top:0!important}
+.lang-bar{display:flex}
+.lang-bar[hidden]{display:none}
