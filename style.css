@@ -16,8 +16,10 @@ h3{font-weight:700;font-size:20px;line-height:1.4;letter-spacing:-.8px}
 .emoji{font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;letter-spacing:0}
 
 /* header: floating square-edged capsule */
-.nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:960px;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:10px 20px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid var(--green);border-radius:0;box-shadow:0 8px 24px rgba(24,45,37,.08);transition:top .2s}
-.translated .nav{top:56px}
+.nav{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:1048px;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:28px 24px;background:rgba(255,255,255,0);-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0);border:1px solid transparent;border-bottom-color:var(--hair);border-radius:0;box-shadow:0 0 0 rgba(24,45,37,0);transition:top .3s,max-width .3s,width .3s,padding .3s,background .3s,border-color .3s,box-shadow .3s,backdrop-filter .3s}
+.nav.scrolled{top:16px;width:calc(100% - 32px);max-width:960px;padding:10px 20px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-color:var(--green);box-shadow:0 8px 24px rgba(24,45,37,.08)}
+.translated .nav{top:40px}
+.translated .nav.scrolled{top:56px}
 .brand{font:700 16px var(--head);letter-spacing:0}
 .nav nav{display:flex;align-items:center;gap:24px}
 .nav nav a{font-size:13px;letter-spacing:0;transition:color .2s}
@@ -129,7 +131,8 @@ a.org:hover{color:var(--green)}
   .job:nth-child(n){margin-top:0}
   .job:nth-child(n) .yr{left:-56px;right:auto}
   .job:nth-child(n)::after{left:-8px;right:auto;width:8px}
-  .nav{padding:8px 14px}
+  .nav{padding:16px 16px}
+  .nav.scrolled{padding:8px 14px}
   .cards,.edu,.skill-grid{grid-template-columns:1fr}
   .skill-grid{gap:28px}
   .links{gap:20px}

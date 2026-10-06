@@ -175,3 +175,11 @@ if (toTop) {
   container.parentNode.insertBefore(g, container);
   io.observe(g);
 })();
+
+// Nav is a plain full-width bar at the top and condenses into a capsule once you scroll.
+const navEl = document.querySelector('.nav');
+if (navEl) {
+  const sync = () => navEl.classList.toggle('scrolled', window.scrollY > 24);
+  addEventListener('scroll', sync, { passive: true });
+  sync();
+}
