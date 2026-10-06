@@ -89,3 +89,11 @@ if (rm) {
   document.addEventListener('click', () => set(false));
   addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
 }
+
+// Floating back-to-top arrow appears after scrolling past the hero.
+const toTop = document.getElementById('toTop');
+if (toTop) {
+  const check = () => toTop.classList.toggle('show', window.scrollY > 500);
+  addEventListener('scroll', check, { passive: true });
+  check();
+}
