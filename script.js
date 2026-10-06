@@ -97,3 +97,42 @@ if (toTop) {
   addEventListener('scroll', check, { passive: true });
   check();
 }
+
+// Experience timeline: year badge, duration, and a bar placed relative to the full date range.
+(function () {
+  const jobs = [...document.querySelectorAll('.job[data-start]')];
+  if (!jobs.length) return;
+  const now = new Date();
+  const nowIdx = now.getFullYear() * 12 + now.getMonth();
+  const idx = v => {
+    if (v === 'present') return nowIdx;
+    const [y, m] = v.split('-').map(Number);
+    return y * 12 + m - 1;
+  };
+  const first = Math.min(...jobs.map(j => idx(j.dataset.start)));
+  const y0 = Math.floor(first / 12), y1 = now.getFullYear();
+  const total = (y1 - y0 + 1) * 12;
+  const base = y0 * 12;
+  const dur = n => {
+    const y = Math.floor(n / 12), m = n % 12;
+    return [y && y + ' yr', m && m + ' mo'].filter(Boolean).join(' ') || '1 mo';
+  };
+  jobs.forEach(j => {
+    const s = idx(j.dataset.start), e = idx(j.dataset.end);
+    const badge = document.createElement('span');
+    badge.className = 'yr';
+    badge.textContent = Math.floor(s / 12);
+    j.prepend(badge);
+    const label = j.querySelector('.label');
+    const d = document.createElement('span');
+    d.className = 'dur';
+    d.textContent = '· ' + dur(e - s + 1);
+    label.appendChild(d);
+    const bar = document.createElement('div');
+    bar.className = 'span';
+    bar.setAttribute('aria-hidden', 'true');
+    bar.innerHTML = '<div class="span-track" style="--seg:' + (100 / (y1 - y0 + 1)) + '%;--l:' + ((s - base) / total * 100) + '%;--w:' + ((e - s + 1) / total * 100) + '%"><i></i></div>' +
+      '<div class="span-yrs">' + Array.from({ length: y1 - y0 + 1 }, (_, k) => '<span>' + (y0 + k) + '</span>').join('') + '</div>';
+    j.appendChild(bar);
+  });
+})();
