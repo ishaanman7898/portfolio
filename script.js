@@ -98,7 +98,8 @@ if (toTop) {
   check();
 }
 
-// Experience timeline: Gantt overview of when each role happened, plus year badge and duration on each card.
+// Experience timeline: a Gantt chart of when each role happened. Click a role to open its details.
+// The role content lives in the hidden .jobs list in index.html (add <img> tags inside .job-photos to show photos).
 (function () {
   const container = document.querySelector('.jobs');
   const jobs = [...document.querySelectorAll('.job[data-start]')];
@@ -121,32 +122,30 @@ if (toTop) {
   const years = y1 - y0 + 1, total = years * 12, base = y0 * 12;
   const pct = n => (n - base) / total * 100;
 
-  const rows = [];
-  jobs.forEach(j => {
+  const rows = jobs.map(j => {
     const s = idx(j.dataset.start), e = idx(j.dataset.end), ongoing = j.dataset.end === 'present';
-    const badge = document.createElement('span');
-    badge.className = 'yr';
-    badge.textContent = Math.floor(s / 12);
-    j.prepend(badge);
-    const d = document.createElement('span');
-    d.className = 'dur';
-    d.textContent = '· ' + dur(e - s + 1);
-    j.querySelector('.label').appendChild(d);
-    rows.push({ j, s, e, ongoing, role: j.querySelector('h3').textContent, org: j.querySelector('.org').textContent.split(' · ')[0] });
+    return {
+      j, s, e, ongoing,
+      role: j.querySelector('h3').textContent,
+      orgFull: j.querySelector('.org').textContent,
+      org: j.querySelector('.org').textContent.split(' · ')[0],
+      range: fmt(s) + ' — ' + (ongoing ? 'Present' : fmt(e)) + ' · ' + dur(e - s + 1)
+    };
   });
 
+  // ---- Chart ----
   const g = document.createElement('div');
   g.className = 'gantt reveal';
-  g.setAttribute('role', 'img');
-  g.setAttribute('aria-label', 'Timeline of experience from ' + y0 + ' to ' + y1);
   const yrs = Array.from({ length: years }, (_, k) => '<span class="' + (k % 2 ? 'alt' : '') + '">' + (y0 + k) + '</span>').join('');
   g.innerHTML =
     '<div class="g-head"><div></div><div class="g-years">' + yrs + '</div></div>' +
     '<div class="g-body"><div class="g-labels"></div><div class="g-plot" style="--years:' + years + '"><div class="g-rows"></div>' +
-    '<div class="g-today" style="left:' + pct(nowIdx + 0.5) + '%"><span>Today</span></div></div></div>';
+    '<div class="g-today" style="left:' + pct(nowIdx + 0.5) + '%"><span>Today</span></div></div></div>' +
+    '<p class="g-hint">Click any role to see what I did there.</p>';
   const labels = g.querySelector('.g-labels'), plot = g.querySelector('.g-rows');
-  rows.forEach(r => {
-    const l = document.createElement('div');
+  rows.forEach((r, n) => {
+    const l = document.createElement('button');
+    l.type = 'button';
     l.className = 'g-label';
     l.innerHTML = '<b></b><small></small>';
     l.firstChild.textContent = r.role;
@@ -159,21 +158,90 @@ if (toTop) {
     bar.className = 'g-bar' + (r.ongoing ? ' on' : '');
     bar.style.left = pct(r.s) + '%';
     bar.style.width = (r.e - r.s + 1) / total * 100 + '%';
-    bar.title = r.role + ' · ' + fmt(r.s) + ' — ' + (r.ongoing ? 'Present' : fmt(r.e));
+    bar.title = r.role + ' · ' + r.range;
+    bar.setAttribute('aria-label', r.role + ', ' + r.range);
     if ((r.e - r.s + 1) / total > 0.06) bar.textContent = dur(r.e - r.s + 1);
-    const on = v => { r.j.classList.toggle('hl', v); bar.classList.toggle('hl', v); l.classList.toggle('hl', v); };
+    const on = v => { bar.classList.toggle('hl', v); l.classList.toggle('hl', v); };
     [bar, l].forEach(el => {
       el.addEventListener('mouseenter', () => on(true));
       el.addEventListener('mouseleave', () => on(false));
+      el.addEventListener('click', () => open(n));
     });
-    bar.addEventListener('click', () => r.j.scrollIntoView({ behavior: 'smooth', block: 'center' }));
-    r.j.addEventListener('mouseenter', () => on(true));
-    r.j.addEventListener('mouseleave', () => on(false));
+    row.addEventListener('click', e => { if (e.target === row) open(n); });
     row.appendChild(bar);
     plot.appendChild(row);
   });
   container.parentNode.insertBefore(g, container);
   io.observe(g);
+
+  // ---- Detail modal ----
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+  modal.hidden = true;
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.innerHTML =
+    '<div class="modal-card" tabindex="-1">' +
+    '<button type="button" class="modal-x" aria-label="Close">×</button>' +
+    '<p class="label accent" data-m-range></p><h3 data-m-role></h3><p class="org" data-m-org></p>' +
+    '<div class="modal-body" data-m-body></div><div class="modal-photos" data-m-photos></div>' +
+    '<div class="modal-nav"><button type="button" data-m-prev>← Newer</button><button type="button" data-m-next>Older →</button></div>' +
+    '</div>';
+  document.body.appendChild(modal);
+  const card = modal.querySelector('.modal-card');
+  let cur = 0, lastFocus = null;
+
+  function fill(n) {
+    cur = (n + rows.length) % rows.length;
+    const r = rows[cur];
+    card.querySelector('[data-m-range]').textContent = r.range;
+    card.querySelector('[data-m-role]').textContent = r.role;
+    const org = card.querySelector('[data-m-org]');
+    org.innerHTML = '';
+    const a = r.j.querySelector('a.org');
+    if (a) {
+      const link = a.cloneNode(true);
+      org.appendChild(link);
+    } else {
+      org.textContent = r.orgFull;
+    }
+    const body = card.querySelector('[data-m-body]');
+    body.innerHTML = '';
+    r.j.querySelectorAll('.body, ul').forEach(el => body.appendChild(el.cloneNode(true)));
+    const ph = card.querySelector('[data-m-photos]');
+    ph.innerHTML = '';
+    r.j.querySelectorAll('.job-photos img').forEach(img => {
+      const c = img.cloneNode(true);
+      c.loading = 'lazy';
+      ph.appendChild(c);
+    });
+    ph.hidden = !ph.children.length;
+    card.scrollTop = 0;
+  }
+  function open(n) {
+    lastFocus = document.activeElement;
+    fill(n);
+    modal.hidden = false;
+    requestAnimationFrame(() => modal.classList.add('show'));
+    document.documentElement.classList.add('modal-open');
+    card.focus();
+  }
+  function close() {
+    modal.classList.remove('show');
+    document.documentElement.classList.remove('modal-open');
+    setTimeout(() => { modal.hidden = true; }, 220);
+    if (lastFocus) lastFocus.focus();
+  }
+  modal.addEventListener('click', e => { if (e.target === modal) close(); });
+  modal.querySelector('.modal-x').addEventListener('click', close);
+  modal.querySelector('[data-m-prev]').addEventListener('click', () => fill(cur - 1));
+  modal.querySelector('[data-m-next]').addEventListener('click', () => fill(cur + 1));
+  addEventListener('keydown', e => {
+    if (modal.hidden) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') fill(cur - 1);
+    if (e.key === 'ArrowRight') fill(cur + 1);
+  });
 })();
 
 // Nav is a plain full-width bar at the top and condenses into a capsule once you scroll.
