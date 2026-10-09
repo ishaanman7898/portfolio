@@ -1,5 +1,5 @@
 :root{
-  --bg:#fff;--panel:#eaf0e5;--ink:#182d25;--mute:#657169;--green:#28634d;--hair:#dfe2db;
+  --bg:#fff;--panel:#eaf0e5;--ink:#000;--mute:#000;--green:#28634d;--hair:#dfe2db;
   --head:'Satoshi',system-ui,sans-serif;--sans:'Inter',system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
