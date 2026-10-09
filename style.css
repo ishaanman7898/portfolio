@@ -35,7 +35,8 @@ main{padding-top:76px}
 .btn svg{color:#fff}
 .btn:hover{background:#163a2b}
 .slot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px;background:var(--panel);border:1px dashed var(--green);border-radius:4px}
-.photo{height:400px}
+.photo{display:flex;justify-content:center;align-items:flex-end;height:400px;border-bottom:2px solid var(--green)}
+.photo img{display:block;height:100%;width:auto;max-width:100%;object-fit:contain;object-position:bottom}
 
 /* ticker */
 .ticker{margin-top:12px}
